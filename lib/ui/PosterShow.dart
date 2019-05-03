@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:show_girl_img/entity/Poster.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as JSON;
+import 'package:show_girl_img/constant/SysConstant.dart';
 
 class PosterShow extends StatelessWidget {
   final int store;
@@ -17,7 +18,6 @@ class PosterShow extends StatelessWidget {
   Widget build(BuildContext context) {
     var screen = ScreenUtil.getInstance();
 
-    // TODO 这里如果拆分的话，应该先把判断显示图片还是显示最后一页的方法拆分出去
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
@@ -28,23 +28,9 @@ class PosterShow extends StatelessWidget {
               child: new FutureBuilder(
                   future: findByGroup(this.group),
                   builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      if (this.store >= posterList.length) {
-                        return Container(
-                          width: screen.width / 1,
-                          height: screen.height + 0.0,
-                          child: Text(
-                            "最后一张啦\n点击返回上一张",
-                            style: TextStyle(fontSize: 40.0),
-                            textAlign: TextAlign.center,
-                          ),
-                          alignment: Alignment.center,
-                        );
-                      }
-                      return new Image.network(posterList[store].url);
-                    } else {
-                      return new CircularProgressIndicator();
-                    }
+                    //根据条件返回内容
+                    return returnContext(snapshot);
+
                   }),
               onHorizontalDragEnd: (endDetails) {
                 nextPage(context,endDetails);
@@ -57,7 +43,7 @@ class PosterShow extends StatelessWidget {
    */
   Future<List<Poster>> findByGroup(String group) async {
     http.Response response = await http
-        .get("http://192.168.43.130:8080/img/findByGroup?group=" + group);
+        .get(SysConstant.BaseUrl + "/img/findByGroup?group=" + group);
     print(response);
     List list = JSON.jsonDecode(response.body);
     this.posterList = new List<Poster>();
@@ -86,6 +72,27 @@ class PosterShow extends StatelessWidget {
     } else {
       print("右");
       Navigator.pop(context);
+    }
+  }
+
+  /**
+   * 根据状态返回  图片 or 最后一页 or 加载中
+   */
+  Widget returnContext(snapshot){
+    if (snapshot.connectionState == ConnectionState.done) {
+      if (this.store >= posterList.length) {
+        return Container(
+          child: Text(
+            "最后一张啦\n点击返回上一张",
+            style: TextStyle(fontSize: 40.0),
+            textAlign: TextAlign.center,
+          ),
+          alignment: Alignment.center,
+        );
+      }
+      return new Image.network(posterList[store].url);
+    } else {
+      return new CircularProgressIndicator();
     }
   }
 }
