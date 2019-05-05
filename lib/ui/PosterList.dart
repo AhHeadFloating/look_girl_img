@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:show_girl_img/entity/Poster.dart';
+import 'package:show_girl_img/ui/PosterDetail.dart';
 
 import 'package:show_girl_img/ui/PosterShow.dart';
 

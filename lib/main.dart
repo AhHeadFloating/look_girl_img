@@ -4,7 +4,7 @@ import 'dart:convert' as JSON;
 import 'dart:async';
 import 'package:show_girl_img/entity/Poster.dart';
 import 'package:show_girl_img/ui/PosterList.dart';
-import 'package:show_girl_img/constant/SysConstant.dart';
+import 'package:show_girl_img/constant/ProjectConstant.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Future<List<Poster>> findGroupList() async {
     //查找所有的套图的开头一张图片
     http.Response response =
-        await http.get(SysConstant.BaseUrl + "/img/findGroupList");
+        await http.get(ProjectConstant.BaseUrl + "/img/findGroupList");
     print(response);
     List list = JSON.jsonDecode(response.body);
 
