@@ -55,11 +55,7 @@ class _PosterShowState extends State<PosterShow> {
                 onHorizontalDragEnd: (endDetails) {
                   nextPage(context, endDetails);
                 },
-                onDoubleTap: (){
-                  for(int i=0;i<=widget.store;i++){
-                    Navigator.pop(context);
-                  }
-                },
+
                 ),
 
         )
@@ -78,6 +74,12 @@ class _PosterShowState extends State<PosterShow> {
         setState(() {
           widget.store += 1;
         });
+      }else{
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text("已经是最后一页了"),
+            ));
       }
 
 
@@ -90,8 +92,17 @@ class _PosterShowState extends State<PosterShow> {
       }));*/
     } else {
       print("右");
-      Navigator.pop(context);
+      if(widget.store > 0){
+        if(widget.store < widget.posterList.length){
+          setState(() {
+            widget.store -= 1;
+          });
+        }
+      }else{
+        Navigator.pop(context);
+      }
     }
+
   }
 
   /**
