@@ -5,8 +5,6 @@ import 'package:device_info/device_info.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as JSON;
 
-
-
 class PosterDetail extends StatefulWidget {
 
   int testState;

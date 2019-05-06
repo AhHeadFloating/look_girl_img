@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:show_girl_img/entity/Poster.dart';
-import 'package:show_girl_img/ui/PosterDetail.dart';
-
 import 'package:show_girl_img/ui/PosterShow.dart';
 
 class PosterList extends StatelessWidget {
-  final List<Poster> items;
 
-//  final String group;
+  final List<Poster> items;
 
   PosterList({Key key, @required this.items /*,@required this.group*/
       })

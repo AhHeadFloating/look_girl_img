@@ -170,10 +170,3 @@ class _PosterShowState extends State<PosterShow> {
     return map;
   }
 }
-
-class input extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new TextField();
-  }
-}

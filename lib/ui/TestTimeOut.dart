@@ -5,16 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:show_girl_img/constant/ProjectConstant.dart';
 import 'dart:convert' as JSON;
 
-
-
 class TestTimeOut extends StatelessWidget {
-
 
   TextEditingController activationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
