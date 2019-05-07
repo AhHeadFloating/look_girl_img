@@ -7,7 +7,7 @@ import 'package:device_info/device_info.dart';
 import 'package:show_girl_img/ui/TestTimeOut.dart';
 
 class PosterShow extends StatefulWidget {
-  final int store;
+  int store;
   final String group;
   List<Poster> posterList = new List<Poster>();
   int testState;
@@ -56,9 +56,7 @@ class _PosterShowState extends State<PosterShow> {
                   nextPage(context, endDetails);
                 },
                 onDoubleTap: (){
-                  for(int i=0;i<=widget.store;i++){
                     Navigator.pop(context);
-                  }
                 },
                 ),
 
@@ -74,16 +72,28 @@ class _PosterShowState extends State<PosterShow> {
       if(widget.testState == 1){
         return;
       }
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return new PosterShow(
-          group: widget.posterList[0].imgGroup,
-          store: widget.store + 1,
-          posterList: widget.posterList,
-        );
-      }));
+      if(widget.store >= widget.posterList.length){
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text("已经最后一页了"),
+            ));
+      }else{
+        setState(() {
+          widget.store += 1;
+        });
+      }
     } else {
       print("右");
-      Navigator.pop(context);
+      if(widget.store <= 0){
+        Navigator.pop(context);
+      }else{
+        setState(() {
+          widget.store -= 1;
+        });
+      }
+
+
     }
   }
 
