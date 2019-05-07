@@ -31,7 +31,7 @@ class TestTimeOut extends StatelessWidget {
                           DeviceInfoPlugin deviceInfo = new DeviceInfoPlugin();
                           AndroidDeviceInfo androidInfo1 =
                               await deviceInfo.androidInfo;
-                          var device = androidInfo1.device;
+                          var device = androidInfo1.androidId;
                           print(device);
                           var text = activationController.text;
                           print(text);
