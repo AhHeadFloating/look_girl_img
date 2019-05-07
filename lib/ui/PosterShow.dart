@@ -55,7 +55,9 @@ class _PosterShowState extends State<PosterShow> {
                 onHorizontalDragEnd: (endDetails) {
                   nextPage(context, endDetails);
                 },
-
+                onDoubleTap: (){
+                    Navigator.pop(context);
+                },
                 ),
 
         )
@@ -70,39 +72,29 @@ class _PosterShowState extends State<PosterShow> {
       if(widget.testState == 1){
         return;
       }
-      if(widget.store < widget.posterList.length){
-        setState(() {
-          widget.store += 1;
-        });
-      }else{
+      if(widget.store >= widget.posterList.length){
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text("已经是最后一页了"),
+              title: Text("已经最后一页了"),
             ));
+      }else{
+        setState(() {
+          widget.store += 1;
+        });
       }
-
-
-      /*Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return new PosterShow(
-          group: widget.posterList[0].imgGroup,
-          store: widget.store + 1,
-          posterList: widget.posterList,
-        );
-      }));*/
     } else {
       print("右");
-      if(widget.store > 0){
-        if(widget.store < widget.posterList.length){
-          setState(() {
-            widget.store -= 1;
-          });
-        }
-      }else{
+      if(widget.store <= 0){
         Navigator.pop(context);
+      }else{
+        setState(() {
+          widget.store -= 1;
+        });
       }
-    }
 
+
+    }
   }
 
   /**

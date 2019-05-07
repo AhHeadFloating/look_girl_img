@@ -27,6 +27,7 @@ class _SimpleListState extends State<SimpleList>{
           return Image.network(widget.items[index].url);
         }
     );
+
   }
   
 }
