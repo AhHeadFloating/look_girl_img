@@ -1,16 +1,11 @@
 # show_girl_img
 
-A new Flutter project.
+一个看写真图片的app，用google新出的flutter语言编写
 
-## Getting Started
+# app预览地址
 
-This project is a starting point for a Flutter application.
+https://s2.ax1x.com/2019/07/15/ZIOBJe.jpg
 
-A few resources to get you started if this is your first Flutter project:
+https://s2.ax1x.com/2019/07/15/ZIODRH.jpg
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+https://s2.ax1x.com/2019/07/15/ZIO0iD.jpg
